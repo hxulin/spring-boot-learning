@@ -17,6 +17,7 @@ public class AsyncService {
     @Async
     @SneakyThrows
     public Future<String> testAsync() {
+        System.out.println(Thread.currentThread().getName());
         TimeUnit.SECONDS.sleep(5);
         return new AsyncResult<>("hello");
     }

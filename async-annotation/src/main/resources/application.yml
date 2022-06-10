@@ -11,7 +11,7 @@ spring:
         # 空闲线程存活时间
         keep-alive: 600s
       # 线程名前缀
-      thread-name-prefix: hxl-async-task-
+      thread-name-prefix: hxl-task-
       shutdown:
         # 线程池关闭时，是否等待现有任务执行完毕
         await-termination: true
