@@ -1,1 +1,19 @@
-
+spring:
+  task:
+    execution:
+      pool:
+        # 核心线程数
+        core-size: 20
+        # 最大线程数
+        max-size: 200
+        # 队列最大长度
+        queue-capacity: 2000
+        # 空闲线程存活时间
+        keep-alive: 600s
+      # 线程名前缀
+      thread-name-prefix: hxl-
+      shutdown:
+        # 线程池关闭时，是否等待现有任务执行完毕
+        await-termination: true
+        # 线程池关闭时最大等待时间
+        await-termination-period: 3s
