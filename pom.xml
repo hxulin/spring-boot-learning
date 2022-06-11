@@ -22,6 +22,7 @@
     <modules>
         <module>async-annotation</module>
         <module>thread-pool</module>
+        <module>customize-thread-pool</module>
     </modules>
 
     <dependencies>

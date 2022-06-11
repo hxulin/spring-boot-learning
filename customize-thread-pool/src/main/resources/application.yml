@@ -1,0 +1,5 @@
+hxl:
+  thread-pool:
+    core-pool-size: 2
+    max-pool-size: 4
+    queue-capacity: 6
