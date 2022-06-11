@@ -43,8 +43,6 @@
 1. 装饰设计模式降低类与类之间的耦合度，可以增 **减** 功能，比继承要灵活。
 2. 我们使用继承是为了方便结合 Spring 的 IOC 功能（按类型扫描 Bean）。
 
----
-
 本节的自定义线程池继承自 `org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor`，扩展了告警监控的功能。
 
 ### 3.2 线程池的监控
