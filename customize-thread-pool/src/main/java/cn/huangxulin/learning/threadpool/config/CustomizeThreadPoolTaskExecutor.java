@@ -51,11 +51,27 @@ public class CustomizeThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
     }
 
     /**
+     * @return 已经执行完成的任务数量
+     */
+    public long getCompletedTaskCount() {
+        return this.getThreadPoolExecutor().getActiveCount();
+    }
+
+    /**
+     * @return 线程池里曾经创建过的最大的线程数量，这个主要是用来判断线程是否满过
+     */
+    public int getLargestPoolSize() {
+        return this.getThreadPoolExecutor().getLargestPoolSize();
+    }
+
+    /**
      * 检查预警
      */
     private void checkWarning() {
         if (properties.getWarningFactor() > 0) {
+            // 获取正在执行任务的线程数量
             int activeCount = this.getActiveCount();
+            // 获取当前线程池中线程数量的大小
             int poolSize = this.getPoolSize();
             int queueSize = this.getThreadPoolExecutor().getQueue().size();
             float warningQueueSize = properties.getQueueCapacity() * properties.getWarningFactor();
