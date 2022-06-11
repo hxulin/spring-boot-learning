@@ -26,7 +26,7 @@ public class CustomizeThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
     private final ThreadPoolProperties properties;
 
     /**
-     * 最近一次告警时间戳
+     * 最近一次队列达到阈值告警时间戳
      */
     private final AtomicLong lastWarningTime = new AtomicLong(0);
 
