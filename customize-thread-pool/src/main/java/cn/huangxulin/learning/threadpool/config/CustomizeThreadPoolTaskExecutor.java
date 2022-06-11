@@ -65,6 +65,13 @@ public class CustomizeThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
     }
 
     /**
+     * @return 线程池已经执行的和未执行的任务总数
+     */
+    public long getTaskCount() {
+        return this.getThreadPoolExecutor().getTaskCount();
+    }
+
+    /**
      * 检查预警
      */
     private void checkWarning() {

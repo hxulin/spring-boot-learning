@@ -47,14 +47,26 @@
 
 ### 3.2 线程池的监控
 
+#### 3.2.1 监控参数
+
 在项目中使用线程池的时候，一般需要对线程池进行监控，方便出问题的时候进行查看。线程池本身提供了一些方法来获取线程池的运行状态。
 
-- getCompletedTaskCount：已经执行完成的任务数量
-- getLargestPoolSize：线程池里曾经创建过的最大的线程数量，这个主要是用来判断线程是否满过。
-- getActiveCount：获取正在执行任务的线程数量
+- getActiveCount：线程池中正在执行任务的线程数量
+- getCompletedTaskCount：线程池已完成的任务数量，该值小于等于 taskCount
+- getCorePoolSize：线程池的核心线程数量
+- getLargestPoolSize：线程池曾经创建过的最大线程数量，通过这个数据可以知道线程池是否满过，也就是达到了 maximumPoolSize
+- getMaximumPoolSize：获取线程池的最大线程数量
 - getPoolSize：获取当前线程池中线程数量的大小
+- getTaskCount：线程池已经执行的和未执行的任务总数
 
 除了线程池提供的上述已经实现的方法，同时线程池也预留了很多扩展方法。比如在 runWorker 方法里面，在执行任务之前会回调 beforeExecute 方法，执行任务之后会回调 afterExecute 方法，而这些方法默认都是空实现，你可以自己继承 ThreadPoolExecutor 来扩展重写这些方法，来实现自己想要的功能。
 
 > 摘自：[https://www.zhihu.com/question/41937174/answer/2471908876](https://www.zhihu.com/question/41937174/answer/2471908876)
 
+#### 3.2.2 监控方式
+
+线程池的监控分为 2 种类型，一种是在执行任务前后全量统计任务排队时间和执行时间，另外一种是通过定时任务，定时获取活跃线程数，队列中的任务数，核心线程数，最大线程数等数据。
+
+`MonitoredThreadPoolExecutor` 会同时统计这两种类型的数据。如果您不想统计全量任务执行和排队的监控数据，可以使用 `ThreadPoolMonitor.monitor(String name, ThreadPoolExecutor threadPoolExecutor)` 方法，该方法只使用定时任务来监控线程数据。其中，name 需要唯一，threadPoolExecutor 不能是 `MonitoredThreadPoolExecutor` 类型，否则会抛出异常。
+
+> 摘自：[https://www.jianshu.com/p/fd7b235eeb23](https://www.jianshu.com/p/fd7b235eeb23)
