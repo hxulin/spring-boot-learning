@@ -32,7 +32,7 @@ public class ThreadPoolConfig extends AsyncConfigurerSupport {
 
     /**
      * 处理 {@link org.springframework.scheduling.annotation.Async} 注解标记，返回值类型是 void 的方法未被捕获的异常
-     * 如果返回类型是 @{@link java.util.concurrent.Future} 将不会被捕获，由应用程序自身处理
+     * 如果返回类型是 {@link java.util.concurrent.Future} 将不会被捕获，由应用程序自身处理
      *
      * @return ignored
      */
