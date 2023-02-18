@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: root
+    password: 12345678
+    schema: classpath:db/schema.sql
+    data: classpath:db/data.sql
+#mybatis-plus:
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

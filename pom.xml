@@ -23,6 +23,7 @@
         <module>async-annotation</module>
         <module>thread-pool</module>
         <module>customize-thread-pool</module>
+        <module>mybatis-plus-sql-log</module>
     </modules>
 
     <dependencies>

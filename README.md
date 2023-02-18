@@ -70,3 +70,7 @@
 `MonitoredThreadPoolExecutor` 会同时统计这两种类型的数据。如果您不想统计全量任务执行和排队的监控数据，可以使用 `ThreadPoolMonitor.monitor(String name, ThreadPoolExecutor threadPoolExecutor)` 方法，该方法只使用定时任务来监控线程数据。其中，name 需要唯一，threadPoolExecutor 不能是 `MonitoredThreadPoolExecutor` 类型，否则会抛出异常。
 
 > 摘自：[https://www.jianshu.com/p/fd7b235eeb23](https://www.jianshu.com/p/fd7b235eeb23)
+
+## 4、mybatis-plus-sql-log（MyBatisPlus 记录执行的 SQL 日志）
+
+主要实现 MyBatis 的 Interceptor 拦截器接口
