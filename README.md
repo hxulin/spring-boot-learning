@@ -73,4 +73,4 @@
 
 ## 4、mybatis-plus-sql-log（MyBatisPlus 记录执行的 SQL 日志）
 
-通过 MyBatis 的 Interceptor 接口拦截将要执行的 SQL，并记录到日志中。
+通过 MyBatis 的 Interceptor 接口拦截 SQL 语句，并记录到日志中。
