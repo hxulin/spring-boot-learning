@@ -88,11 +88,11 @@ public class SqlLoggerInterceptor implements Interceptor {
                     String paramValueStr;
                     if (value instanceof String || value instanceof LocalDate || value instanceof LocalTime) {
                         paramValueStr = SINGLE_QUOTE + value + SINGLE_QUOTE;
-                    } else if (value instanceof Date) {
-                        paramValueStr = SINGLE_QUOTE + DATE_FORMAT_THREAD_LOCAL.get().format(value) + SINGLE_QUOTE;
                     } else if (value instanceof LocalDateTime) {
                         DateTimeFormatter pattern = DateTimeFormatter.ofPattern(DatePattern.NORM_DATETIME_PATTERN);
                         paramValueStr = SINGLE_QUOTE + ((LocalDateTime) value).format(pattern) + SINGLE_QUOTE;
+                    } else if (value instanceof Date) {
+                        paramValueStr = SINGLE_QUOTE + DATE_FORMAT_THREAD_LOCAL.get().format(value) + SINGLE_QUOTE;
                     } else {
                         paramValueStr = value + StringPool.EMPTY;
                     }
