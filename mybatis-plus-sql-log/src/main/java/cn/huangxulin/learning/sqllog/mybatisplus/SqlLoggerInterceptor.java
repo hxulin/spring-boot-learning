@@ -47,6 +47,9 @@ public class SqlLoggerInterceptor implements Interceptor {
             () -> new SimpleDateFormat(DatePattern.NORM_DATETIME_PATTERN)
     );
 
+    private static final DateTimeFormatter DATETIME_FMT = DateTimeFormatter.ofPattern(DatePattern.NORM_DATETIME_PATTERN);
+    private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern(DatePattern.NORM_TIME_PATTERN);
+
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
@@ -89,11 +92,9 @@ public class SqlLoggerInterceptor implements Interceptor {
                     if (value instanceof String || value instanceof LocalDate) {
                         paramValueStr = SINGLE_QUOTE + value + SINGLE_QUOTE;
                     } else if (value instanceof LocalDateTime) {
-                        DateTimeFormatter pattern = DateTimeFormatter.ofPattern(DatePattern.NORM_DATETIME_PATTERN);
-                        paramValueStr = SINGLE_QUOTE + ((LocalDateTime) value).format(pattern) + SINGLE_QUOTE;
+                        paramValueStr = SINGLE_QUOTE + ((LocalDateTime) value).format(DATETIME_FMT) + SINGLE_QUOTE;
                     } else if (value instanceof LocalTime) {
-                        DateTimeFormatter pattern = DateTimeFormatter.ofPattern(DatePattern.NORM_TIME_PATTERN);
-                        paramValueStr = SINGLE_QUOTE + ((LocalTime) value).format(pattern) + SINGLE_QUOTE;
+                        paramValueStr = SINGLE_QUOTE + ((LocalTime) value).format(TIME_FMT) + SINGLE_QUOTE;
                     } else if (value instanceof Date) {
                         paramValueStr = SINGLE_QUOTE + DATE_FORMAT_THREAD_LOCAL.get().format(value) + SINGLE_QUOTE;
                     } else {
