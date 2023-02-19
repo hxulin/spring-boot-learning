@@ -64,7 +64,7 @@ public class SqlLoggerInterceptor implements Interceptor {
         Object parameterObject = boundSql.getParameterObject();
         List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
         // 替换空格、换行、tab缩进等
-        String sql = boundSql.getSql().replaceAll("[\\s]+", StringPool.SPACE);
+        String sql = boundSql.getSql().replaceAll("\\s", StringPool.SPACE);
 
         TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
         /*
@@ -86,11 +86,14 @@ public class SqlLoggerInterceptor implements Interceptor {
                         value = metaObject.getValue(propertyName);
                     }
                     String paramValueStr;
-                    if (value instanceof String || value instanceof LocalDate || value instanceof LocalTime) {
+                    if (value instanceof String || value instanceof LocalDate) {
                         paramValueStr = SINGLE_QUOTE + value + SINGLE_QUOTE;
                     } else if (value instanceof LocalDateTime) {
                         DateTimeFormatter pattern = DateTimeFormatter.ofPattern(DatePattern.NORM_DATETIME_PATTERN);
                         paramValueStr = SINGLE_QUOTE + ((LocalDateTime) value).format(pattern) + SINGLE_QUOTE;
+                    } else if (value instanceof LocalTime) {
+                        DateTimeFormatter pattern = DateTimeFormatter.ofPattern(DatePattern.NORM_TIME_PATTERN);
+                        paramValueStr = SINGLE_QUOTE + ((LocalTime) value).format(pattern) + SINGLE_QUOTE;
                     } else if (value instanceof Date) {
                         paramValueStr = SINGLE_QUOTE + DATE_FORMAT_THREAD_LOCAL.get().format(value) + SINGLE_QUOTE;
                     } else {

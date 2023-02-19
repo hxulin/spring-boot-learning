@@ -8,5 +8,8 @@ CREATE TABLE user
     email VARCHAR(50) NULL DEFAULT NULL COMMENT '邮箱',
     create_time DATETIME COMMENT '创建时间',
     update_time DATETIME COMMENT '更新时间',
+    test_local_date DATE COMMENT 'LocalDate test field',
+    test_local_time TIME COMMENT 'LocalTime test field',
+    test_date DATETIME COMMENT 'Date test field',
     PRIMARY KEY (id)
 );

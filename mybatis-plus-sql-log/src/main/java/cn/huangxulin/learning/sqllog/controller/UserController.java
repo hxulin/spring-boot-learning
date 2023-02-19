@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -37,6 +40,11 @@ public class UserController {
         user.setName("user" + id);
         user.setAge(ThreadLocalRandom.current().nextInt(10, 100));
         user.setEmail("user" + id + "@example.com");
+
+        user.setTestDate(new Date());
+        user.setTestLocalDate(LocalDate.now());
+        user.setTestLocalTime(LocalTime.now());
+
         userService.save(user);
     }
 }
