@@ -67,7 +67,7 @@ public class SqlLoggerInterceptor implements Interceptor {
         Object parameterObject = boundSql.getParameterObject();
         List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
         // 替换空格、换行、tab缩进等
-        String sql = boundSql.getSql().replaceAll("\\s", StringPool.SPACE);
+        String sql = boundSql.getSql().replaceAll("\\s+", StringPool.SPACE);
 
         TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
         /*
